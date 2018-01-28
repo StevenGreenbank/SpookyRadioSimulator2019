@@ -15,7 +15,7 @@ public class TimelineQueue : MonoBehaviour {
 
     public void Init()
     {
-        timelineQueue = new TimelineQueue;
+        //timelineQueue = new TimelineQueue();
         section = 0;
     }
 

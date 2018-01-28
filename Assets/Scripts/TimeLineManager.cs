@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class TimelineManager : MonoBehaviour {
 
     // slider listeners ### set type, init, etc
-    TimelineListener TLQListener;
+    //TimelineListener TLQListener;
    
 
     // timeline queues
@@ -112,3 +112,4 @@ public class TimelineManager : MonoBehaviour {
 
 
 }
+*/
