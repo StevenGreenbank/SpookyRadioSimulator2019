@@ -7,7 +7,13 @@ public class TimelineManager : MonoBehaviour {
     // slider listeners ### set type, init, etc
 
     TimelineListener TLQListener;
-   
+    const int RATINGS_LOSS = 10;
+    AudioManager audioMan;
+    PlayerStats playerStats;
+
+
+    //dummy functions
+
 
     // timeline queues
     TimelineQueue TLQ;
@@ -15,7 +21,7 @@ public class TimelineManager : MonoBehaviour {
 
     SoundCues soundCues;
     string currentClipName;
-    Time currentTime;
+    float currentTime;
 
 
 
@@ -32,7 +38,7 @@ public class TimelineManager : MonoBehaviour {
     void Update () {
 
         //get timelime cues from listeners
-        currentTime = instance.GetSoundTime(currentClipName);
+        currentTime = audioMan.GetSoundTime(currentClipName);
 
 
         // compare times to timelines, update if nessecary
@@ -53,7 +59,7 @@ public class TimelineManager : MonoBehaviour {
         // if volumes don't match
 
         
-        if (!CompareVolume(TLQ, TLQListener))
+        if (!CompareVolume())
         {
             StopAndPunish();
         }
@@ -61,7 +67,8 @@ public class TimelineManager : MonoBehaviour {
 
         else {
             // else, adjust ratings and oxygen as normal
-
+            playerStats.LeakO2();
+            playerStats.GainRatings();
 
         }
     }
@@ -78,12 +85,15 @@ public class TimelineManager : MonoBehaviour {
 
     private bool AfterEnd()
     {
-        return TLQListener.getTime() >= TLQ.Peek().timeEnd;
+        return TLQListener.GetTime() >= TLQ.Peek().timeEnd;
     }    
+
+
+
 
     private bool CompareVolume()
     {
-        return TLQListener.getVolume() == TLQ.Peek().volume; 
+        return TLQListener.GetVolume() == TLQ.Peek().volume; 
     }
 
 
@@ -91,13 +101,13 @@ public class TimelineManager : MonoBehaviour {
     private void StopAndPunish()
     {
         // stop clips
-        instance.Stop(currentClipName);
+        audioMan.Stop(currentClipName);
 
         // punish player
         playerStats.PunishO2();
+        playerStats.LoseRatings(currentSection * RATINGS_LOSS);
 
         SetNextSectionSeq();
-
     }
 
     //init and upadte section before using
@@ -105,46 +115,39 @@ public class TimelineManager : MonoBehaviour {
     {
         // need a var to store the clip lengths, 
 
-
         for (int i = 0; i < soundCues.SectionLength(currentSection); i++)
         {
             TLQ.Enqueue(soundCues.GetCue(currentSection, i));
-
         }
-
-
     }
 
 
     private void StartSound()
     {
-        instance.Play(currentClipName);   
+        audioMan.Play(currentClipName);   
     }
 
 
     private void SetNextSectionSeq()
     {
-         if (soundCues.MAX_SECTIONS != currentSection - 1)
-         {
+        if (soundCues.GetMaxSections() != currentSection - 1)
+        {
+            playerStats.BonusO2();
 
-            playerStats.
-
-             // queue up next section
+            // queue up next section
             currentSection++;
             TLQ.NextSection();
             // clear timelines
             ClearAllTimelineQueues();
             //and fill them with the next section's timelines
             FillQueue();
-
-
         }
         else
         {
-               // cue endgame sequence
+            // cue endgame sequence
         }
 
-
+    }
 
     
 }
@@ -152,5 +155,4 @@ public class TimelineManager : MonoBehaviour {
 
 
 
-}
-*/
+

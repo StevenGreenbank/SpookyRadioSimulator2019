@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TimelineCue : MonoBehaviour {
 
-    public Time timeStart;
-    public Time timeEnd;
+    public float timeStart;
+    public float timeEnd;
     public float volume;
 
 }

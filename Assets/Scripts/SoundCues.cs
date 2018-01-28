@@ -27,5 +27,10 @@ public class SoundCues : MonoBehaviour {
         return soundClipName[currentSection];
     }
 
+    public int GetMaxSections()
+    {
+        return MAX_SECTIONS;
+    }
+
 
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ShowValueScript : MonoBehaviour {
 
     Text percentageText;
+    int percentage;
+
 
 	void Start () {
         percentageText = GetComponent<Text> ();
@@ -13,6 +15,8 @@ public class ShowValueScript : MonoBehaviour {
 	
 
 	public void textUpdate (float value) {
-        percentageText.text = Mathf.RoundToInt(value * 100) + "%";
+
+        percentage = Mathf.RoundToInt(value * 100);
+        percentageText.text = percentage + "%";
 	}
 }

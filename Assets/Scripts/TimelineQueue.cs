@@ -58,7 +58,7 @@ public class TimelineQueue : MonoBehaviour {
         timelineQueue.Enqueue(inCue);
     }
 
-    public void Enqueue(Time inStart, Time inEnd, float inVolume)
+    public void Enqueue(float inStart, float inEnd, float inVolume)
     {
         TimelineCue inCue = new TimelineCue();
         inCue.timeStart = inStart;

@@ -8,17 +8,17 @@ public class PlayerStats : MonoBehaviour {
     public const int MIN_HEALTH = 1;
     public const int PUNISHMENT = 33;
     public const int SLOW_LEAK = 1;
-    public const int LISTENER_GAIN = 1;
+    public const int RATINGS_GAIN = 1;
 
     public PlayerStats playerStats;
 
     int oxygen;
-    int listeners;
+    int ratings;
 
 	// Use this for initialization
 	void Start () {
         oxygen = 100;
-        listeners = 20;
+        ratings = 20;
 	}
 	
 	// Update is called once per frame
@@ -36,12 +36,12 @@ public class PlayerStats : MonoBehaviour {
         oxygen -= PUNISHMENT;
     }
 
-    public void LoseListeners(int lost)
+    public void LoseRatings(int lost)
     {
-        listeners -= lost;
-        if (listeners < 0)
+        ratings -= lost;
+        if (ratings < 0)
         {
-            listeners = 0;
+            ratings = 0;
         }
     }
 
@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour {
 
     public void BonusO2()
     {
-        oxygen += listeners;
+        oxygen += ratings;
 
         if (oxygen > MAX_HEALTH)
         {
@@ -63,6 +63,11 @@ public class PlayerStats : MonoBehaviour {
     public bool IsDead()
     {
         return oxygen < MIN_HEALTH;
+    }
+
+    public void GainRatings()
+    {
+        ratings += RATINGS_GAIN;
     }
 
     
