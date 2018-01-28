@@ -5,7 +5,11 @@ using UnityEngine;
 public class TimelineManager : MonoBehaviour {
 
     // slider listeners ### set type, init, etc
+<<<<<<< Updated upstream
     //TimelineListener TLQListener;
+=======
+   // TimelineListener TLQListener;
+>>>>>>> Stashed changes
    
 
     // timeline queues
@@ -30,6 +34,8 @@ public class TimelineManager : MonoBehaviour {
         // compare times to timelines, update if nessecary
 
         // if volumes don't match
+
+        /*
         if (!CompareVolume(TLQ, TLQListener))
         {
             StopAndPunish();
@@ -41,7 +47,7 @@ public class TimelineManager : MonoBehaviour {
 
 
         }
-
+        */
 
 
 
@@ -61,6 +67,9 @@ public class TimelineManager : MonoBehaviour {
  
     }
 
+
+
+    /*
     private bool AfterEnd()
     {
         return TLQListener.getTime() >= TLQ.Peek().timeEnd;
@@ -71,6 +80,7 @@ public class TimelineManager : MonoBehaviour {
         return TLQListener.getVolume() == TLQ.Peek().volume; 
     }
 
+    */
 
     private void StopAndPunish()
     {
@@ -100,9 +110,9 @@ public class TimelineManager : MonoBehaviour {
         // need a var to store the clip lengths, 
 
 
-        for (int i = 0; i < soundCues.sectionLength(currentSection); i++)
+        for (int i = 0; i < soundCues.SectionLength(currentSection); i++)
         {
-            TLQ.Enqueue(soundCues.getCue(currentSection, i));
+            TLQ.Enqueue(soundCues.GetCue(currentSection, i));
 
         }
 
