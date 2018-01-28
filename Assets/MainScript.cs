@@ -38,7 +38,7 @@ public class MainScript : MonoBehaviour
     }
     static hotPoint[] h =
         new hotPoint[] {
-            new hotPoint ( 30f,  59f,  1, -1f, true,   true,false),
+            new hotPoint ( 30f,  59f,  0, -1f, true,   true,false),
             new hotPoint ( 65f,  84f,  1, -1f, true,   false,true)
         };
 
@@ -66,13 +66,15 @@ public class MainScript : MonoBehaviour
             }
             if ((c.cutCall && CutCallPressed) || (c.playAd && PlayAdPressed))
             {
+                CutCallPressed = false;
+                PlayAdPressed = false;
                 StartCoroutine(branchEvent(c.end, branchNames[c.index]));
             }
         }
 
     }
 
-
+        
     public void slideUpdate(float value)
     {
         slideValue = value;
