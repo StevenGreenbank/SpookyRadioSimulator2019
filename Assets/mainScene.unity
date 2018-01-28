@@ -351,7 +351,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Cut Call
 --- !u!222 &284560843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -595,7 +595,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
-  sounds: []
+  sounds:
+  - name: 
+    clip: {fileID: 0}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    time: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!224 &495132626
 RectTransform:
   m_ObjectHideFlags: 0
@@ -967,7 +977,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Play Ad
 --- !u!222 &1230006128
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1294,7 +1304,7 @@ GameObject:
   - component: {fileID: 1725708713}
   - component: {fileID: 1725708712}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Cut Call
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
