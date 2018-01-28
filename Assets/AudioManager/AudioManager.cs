@@ -152,6 +152,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return -1;
         }
-        return s.time * s.source.clip.length;
+        return s.source.time;
     }
 }
