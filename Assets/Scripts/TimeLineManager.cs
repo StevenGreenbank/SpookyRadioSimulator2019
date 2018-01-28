@@ -5,23 +5,26 @@ using UnityEngine;
 public class TimelineManager : MonoBehaviour {
 
     // slider listeners ### set type, init, etc
-<<<<<<< Updated upstream
-    //TimelineListener TLQListener;
-=======
+
    // TimelineListener TLQListener;
->>>>>>> Stashed changes
    
 
     // timeline queues
     TimelineQueue TLQ;
     int currentSection;
 
+    SoundCues soundCues;
+    string currentClipName;
+    Time currentTime;
+
+
+
     // Use this for initialization
     public void Init()
     {
         currentSection = 0;
-
-
+        currentClipName = soundCues.GetClipName(currentSection);
+        FillQueue();
 
     }
 
@@ -29,9 +32,23 @@ public class TimelineManager : MonoBehaviour {
     void Update () {
 
         //get timelime cues from listeners
+        currentTime = instance.GetSoundTime(currentClipName);
 
 
         // compare times to timelines, update if nessecary
+        if(AfterEnd())
+        {
+
+            if (!TLQ.IsEmpty())
+            {
+                TLQ.Next(); 
+            }
+            else
+            { 
+                  SetNextSectionSeq();
+            }
+        }
+
 
         // if volumes don't match
 
@@ -85,21 +102,12 @@ public class TimelineManager : MonoBehaviour {
     private void StopAndPunish()
     {
         // stop clips
+       instance.Stop(currentClipName);
+
+    // punish player
 
 
-        // punish player
-
-
-        // move current section to next section
-        currentSection++;
-        TLQ.NextSection();
-
-
-        // clear timelines
-        ClearAllTimelineQueues();
-
-        //and fill them with the next section's timelines
-        FillQueue();
+        SetNextSectionSeq();
 
 
     }
@@ -118,6 +126,39 @@ public class TimelineManager : MonoBehaviour {
 
 
     }
+
+
+    private void StartSound()
+    {
+        instance.Play(currentClipName);   
+    }
+
+
+    private void SetNextSectionSeq()
+    {
+         if (soundCues.MAX_SECTIONS != currentSection - 1)
+         {
+
+             // queue up next section
+            currentSection++;
+            TLQ.NextSection();
+            // clear timelines
+            ClearAllTimelineQueues();
+            //and fill them with the next section's timelines
+            FillQueue();
+
+
+        }
+        else
+        {
+               // cue endgame sequence
+        }
+
+
+
+    
+}
+
 
 
 

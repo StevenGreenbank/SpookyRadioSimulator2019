@@ -69,4 +69,10 @@ public class TimelineQueue : MonoBehaviour {
     }
 
 
+    public bool IsEmpty()
+    {
+        return timelineQueue.Count != 0;
+    }
+
+
 }

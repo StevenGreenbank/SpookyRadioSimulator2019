@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SoundCues : MonoBehaviour {
 
-    const int MAX_SECTIONS = 3;
-    const int MAX_CLIPS = 3;
+    public const int MAX_SECTIONS = 3;
+    public const int MAX_CLIPS = 3;
 
     int[] sectionLength = new int[MAX_SECTIONS];
     TimelineCue[,] cueList = new TimelineCue[MAX_SECTIONS, MAX_CLIPS];
@@ -21,4 +21,11 @@ public class SoundCues : MonoBehaviour {
    {
         return cueList[currentSection, cueIndex];
    }
+
+    public string GetClipName(int currentSection)
+    {
+        return soundClipName[currentSection];
+    }
+
+
 }
