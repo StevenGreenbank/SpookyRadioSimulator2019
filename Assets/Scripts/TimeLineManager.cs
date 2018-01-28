@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
+
 public class TimelineManager : MonoBehaviour {
 
     // slider listeners ### set type, init, etc
 
-   // TimelineListener TLQListener;
+    TimelineListener TLQListener;
    
 
     // timeline queues
@@ -52,7 +52,7 @@ public class TimelineManager : MonoBehaviour {
 
         // if volumes don't match
 
-        /*
+        
         if (!CompareVolume(TLQ, TLQListener))
         {
             StopAndPunish();
@@ -64,17 +64,6 @@ public class TimelineManager : MonoBehaviour {
 
 
         }
-        */
-
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -86,7 +75,7 @@ public class TimelineManager : MonoBehaviour {
 
 
 
-    /*
+
     private bool AfterEnd()
     {
         return TLQListener.getTime() >= TLQ.Peek().timeEnd;
@@ -97,18 +86,17 @@ public class TimelineManager : MonoBehaviour {
         return TLQListener.getVolume() == TLQ.Peek().volume; 
     }
 
-    */
+
 
     private void StopAndPunish()
     {
         // stop clips
-       instance.Stop(currentClipName);
+        instance.Stop(currentClipName);
 
-    // punish player
-
+        // punish player
+        playerStats.PunishO2();
 
         SetNextSectionSeq();
-
 
     }
 
@@ -138,6 +126,8 @@ public class TimelineManager : MonoBehaviour {
     {
          if (soundCues.MAX_SECTIONS != currentSection - 1)
          {
+
+            playerStats.
 
              // queue up next section
             currentSection++;

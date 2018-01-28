@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour {
     public const int SLOW_LEAK = 1;
     public const int LISTENER_GAIN = 1;
 
-    public static PlayerStats playerStats;
+    public PlayerStats playerStats;
 
     int oxygen;
     int listeners;
